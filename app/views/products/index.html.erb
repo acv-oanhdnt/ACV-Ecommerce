@@ -1,0 +1,28 @@
+<div class="container products">
+  <div class="row">
+    <h2 class="title">Products Listing</h2>
+  </div>
+  <div class="row">
+    <% @products.each do |product| %>
+          <div class="col-sm-6 col-md-4 col-lg-4 mt-4">
+            <div class="card">
+              <%= link_to product_path(product.id) do%>
+                <div class="img-box">
+                  <img class="card-img-top" src="<%= product.img_url %>">
+                </div>
+              <% end %>
+              <div class="card-block">
+                <%= hidden_field_tag 'product_id', product.id %>
+                <div class="details">
+                  <%= link_to product_path(product.id) do%>
+                    <h5 class="card-title"><%= product.name %></h5>
+                  <% end %>
+                  <p><%= simple_format product.description.truncate(40) %></p>
+                </div>
+                <p class="price"><%= number_to_currency (product.price), unit: '$', precision: 2  %><p>
+              </div>
+            </div>
+          </div>
+      <% end %>
+  </div>
+</div>

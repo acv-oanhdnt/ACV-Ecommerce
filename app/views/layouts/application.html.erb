@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ACVEcommerce</title>
+    <title>ACV-Ecommerce</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,11 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div id="mainWrapper">
+      <%= render "shared/application_nav" %>
+      <div class="container" id="content">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
