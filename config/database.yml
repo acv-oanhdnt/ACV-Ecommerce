@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: 'jientdongoc'
+  password: ''
+
+development:
+  <<: *default
+  database: ACV-Ecommerce_development
+
+test:
+  <<: *default
+  database: ACV-Ecommerce_test
+
+production:
+  <<: *default
+  database: ACV-Ecommerce_production
+  username: ACV-Ecommerce
+  password: <%= ENV['ACV-ECOMMERCE_DATABASE_PASSWORD'] %>
