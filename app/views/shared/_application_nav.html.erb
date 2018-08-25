@@ -13,7 +13,7 @@
               <%= link_to "PRODUCTS", products_path, class: 'nav-link' %>
             </li>
             <li class="nav-item ">
-                <%= link_to "CATEGORYS", products_path, class: 'nav-link' %>
+                <%= link_to "CATEGORIES", products_path, class: 'nav-link' %>
             </li>
           </ul>
           <ul class="nav navbar-nav pull-right">
@@ -22,7 +22,10 @@
                 <i class="fa fa-shopping-cart fa-lg"></i>
               </a>
               <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-divider" href="#" ></div>
+                <% @cart.cart_items.each do |item| %>
+                  <%= link_to "#{item.product.name} x #{item.quantity}", product_path(item.product.id), class: 'dropdown-item' %>
+                <% end %>
+                <div class="dropdown-divider"></div>
                 <%= link_to products_path, class:'dropdown-item' do %>
                   <i class="fa fa-check" aria-hidden="true" ></i> CHECK OUT
                 <% end%>

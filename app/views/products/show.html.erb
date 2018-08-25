@@ -1,0 +1,39 @@
+<div class="product">
+  <div class="row product-top">
+    <div class="product-overview">
+      <div class="col-md-4 product-img-left">
+        <img class="card-img-top" src="<%= @product.img_url %>">
+      </div>
+      <div class="col-md-8 product-overview-right">
+          <h2 class="product-name"><%= @product.name%></h2> <br>
+          <p>
+              <%= link_to products_path do%>
+              <span style="color:#1ac6ff"> Home </span>|
+              <% end %>
+              <%= link_to '' do%>
+              <span style="color:#1ac6ff"> <%= @product.name %> </span>|
+              <% end %>
+          </p>
+          <%= form_tag cart_items_path, method: :post,  id:'product-info' do %>
+              <div class="product-text">
+                  <%= simple_format @product.description %>
+              </div>
+              <hr>
+              <div class="product-price">
+                  <h4><%= number_to_currency (@product.price), unit: '$', precision: 0  %></h4>
+              </div>
+              </br>
+              <p>Current Quantity: </p>
+              <%= hidden_field_tag 'product_id', @product.id %>
+              <fieldset class="form-group col-md-4">
+                <label for="productSelection" class="form-control-label">Quantity</label>
+                  <%= select_tag 'quantity', options_for_select([1, 2, 3, 4, 5], 1), class:'form-control'%>
+              </fieldset>
+                <%= button_tag class: 'btn btn-addcart' do %>
+                  <i class="fa fa-cart-plus fa-lg"></i> Add to Cart
+                <% end %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
