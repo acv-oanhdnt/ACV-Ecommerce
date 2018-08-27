@@ -41,6 +41,7 @@ gem 'bootstrap', '~> 4.1', '>= 4.1.3'
 gem 'jquery-rails'
 
 gem 'kaminari'
+gem 'devise'
 
 gem 'slim'
 group :development, :test do

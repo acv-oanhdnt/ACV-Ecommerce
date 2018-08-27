@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include DeviseWhitelist
+
   before_action :current_cart
 
   def current_cart
