@@ -1,0 +1,18 @@
+.products
+  h2.title.text-center Products Listing
+  .row
+    - @products.each do |product|
+      .col-sm-6.col-md-4.col-lg-4.mt-4
+        .card
+          = link_to product_path(product.id) do
+            .img-box
+              img.card-img-top src="#{product.img_url}" /
+          .card-block
+            = hidden_field_tag 'product_id', product.id
+            .details
+              = link_to product_path(product.id) do
+                h5.card-title= product.name
+              p= simple_format product.description.truncate(80)
+            p.price= number_to_currency (product.price), unit: '$', precision: 2
+            p
+  = paginate @products

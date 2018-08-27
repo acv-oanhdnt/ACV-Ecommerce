@@ -1,0 +1,30 @@
+.product
+  .row.product-top
+    .product-overview
+      .col-md-4.product-img-left
+        img.card-img-top src="#{@product.img_url}" 
+      .col-md-8.product-overview-right
+        h2.product-name= @product.name
+        br
+        p
+          = link_to products_path do
+            span style="color:#1ac6ff" > Home
+            | \
+          = link_to '' do
+            span style="color:#1ac6ff"
+              = @product.name
+            | \
+        = form_tag cart_items_path, method: :post,  id:'product-info' do
+          .product-text
+            = simple_format @product.description
+          hr
+          .product-price
+            h4= number_to_currency (@product.price), unit: '$', precision: 0
+          p Current Quantity:
+          = hidden_field_tag 'product_id', @product.id
+          fieldset.form-group.col-md-4
+            label.form-control-label for="productSelection"  Quantity
+            = select_tag 'quantity', options_for_select([1, 2, 3, 4, 5], 1), class:'form-control'
+          = button_tag class: 'btn btn-addcart' do
+            i.fa.fa-cart-plus.fa-lg
+            | Add to Cart
