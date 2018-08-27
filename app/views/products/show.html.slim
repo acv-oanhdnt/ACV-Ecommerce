@@ -2,10 +2,10 @@
   .row.product-top
     .product-overview
       .col-md-4.product-img-left
-        img.card-img-top src="#{@product.img_url}" /
+        img.card-img-top src="#{@product.img_url}" 
       .col-md-8.product-overview-right
         h2.product-name= @product.name
-        br/
+        br
         p
           = link_to products_path do
             span style="color:#1ac6ff" > Home
@@ -17,7 +17,7 @@
         = form_tag cart_items_path, method: :post,  id:'product-info' do
           .product-text
             = simple_format @product.description
-          hr/
+          hr
           .product-price
             h4= number_to_currency (@product.price), unit: '$', precision: 0
           p Current Quantity:

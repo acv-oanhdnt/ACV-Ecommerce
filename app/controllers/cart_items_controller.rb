@@ -11,9 +11,7 @@ class CartItemsController < ApplicationController
         selected_item = cart.cart_items.build(quantity: params[:quantity], price: product.price, product_id: product.id)
       end
 
-      respond_to do |format|
-        return redirect_to product_path(product.id) if selected_item.save
-        redirect_to product_path(product.id), notice: 'Error when adding item to cart.'
-      end
+      return redirect_to product_path(product.id) if selected_item.save
+      redirect_to product_path(product.id), notice: 'Error when adding item to cart.'
   end
 end
