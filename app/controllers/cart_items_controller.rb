@@ -12,11 +12,8 @@ class CartItemsController < ApplicationController
       end
 
       respond_to do |format|
-        if selected_item.save
-          format.html {redirect_to product_path(product.id)}
-        else
-          format.html {redirect_to product_path(product.id), notice: 'Error when adding item to cart.'}
-        end
+        return redirect_to product_path(product.id) if selected_item.save
+        redirect_to product_path(product.id), notice: 'Error when adding item to cart.'
       end
   end
 end
