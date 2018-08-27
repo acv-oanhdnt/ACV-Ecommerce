@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include DeviseWhitelist
+
   before_action :current_cart
 
   def current_cart
@@ -12,5 +13,4 @@ class ApplicationController < ActionController::Base
 
     @cart
   end
-
 end
