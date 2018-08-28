@@ -5,7 +5,6 @@ Rails.application.routes.draw do
     sign_up: 'register'
   }
   resources 'products', only: [:index, :show]
-
-  resources 'cart_items'
+  resources 'carts'
   root to: 'products#index'
 end

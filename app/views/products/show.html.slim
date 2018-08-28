@@ -2,7 +2,7 @@
   .row.product-top
     .product-overview
       .col-md-4.product-img-left
-        img.card-img-top src="#{@product.img_url}" 
+        img.card-img-top src="#{@product.img_url}"
       .col-md-8.product-overview-right
         h2.product-name= @product.name
         br
@@ -14,7 +14,7 @@
             span style="color:#1ac6ff"
               = @product.name
             | \
-        = form_tag cart_items_path, method: :post,  id:'product-info' do
+        = form_tag carts_path, method: :post,  id:'product-info' do
           .product-text
             = simple_format @product.description
           hr
