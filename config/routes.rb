@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'cart' => 'carts#index', :as => 'cart_index'
   post 'cart' => 'carts#change_quantity'
   post 'cart/add/:id' => 'carts#add', :as => 'cart_add'
-  delete 'cart/remove/:id' => 'carts#delete', :as => 'cart_delete'
+  delete 'cart/delete/:id' => 'carts#delete', :as => 'cart_delete'
   delete 'cart/empty' => 'carts#empty', :as => 'empty_cart'
 
   root to: 'products#index'
