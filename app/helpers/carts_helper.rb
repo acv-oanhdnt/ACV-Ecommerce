@@ -3,8 +3,7 @@ module CartsHelper
     cart = session[:cart]
     product_data = {}
     if cart.present?
-      # binding.pry
-      products = Product.find(cart.keys)
+      products = Product.where(id: cart.keys)
       @total_price = 0
       products.each do |product|
         cart_item_price = cart[product.id.to_s] * product.price
