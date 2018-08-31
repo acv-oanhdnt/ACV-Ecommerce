@@ -16,9 +16,10 @@
             = hidden_field_tag :product_id, product.id
             td = image_tag(product.img_url, size: "100")
             td = link_to product.name, product_path(product.id)
-            td = form_tag(controller: 'carts', action: 'change_quantity')
-              = number_field_tag :quantity, item[1]['quantity'], min: 1, step: 1, style: "width: 100px"
-              = submit_tag 'Change', class: 'btn btn-info btn-sm'
+            = form_tag cart_path, method: :post do
+              td
+                = number_field_tag :quantity, item[1]['quantity'], min: 1, step: 1, style: "width: 100px"
+                = submit_tag 'Change', class: 'btn btn-info btn-sm'
             td = number_to_currency (item[1]['item_price']), unit: '$'
             td = link_to cart_delete_path(product.id), method: :delete, data: { confirm: 'Remove this product from cart?'} do
               span.btn.btn-info Remove
@@ -26,4 +27,8 @@
           td
           td
           td
-          td = 'Total: ' + (number_to_currency (@total_price), unit: '$')
+          td = 'Total: $' + @total_price.to_s
+  .text-center
+    = link_to 'Back', products_path, class: 'btn btn-primary'
+    = link_to 'Check out', products_path, class: 'btn btn-success'
+    = link_to 'Remove all', empty_cart_path, method: :delete, class: 'btn btn-danger'
