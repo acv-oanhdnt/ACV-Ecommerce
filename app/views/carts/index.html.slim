@@ -1,0 +1,29 @@
+.cart
+  .h2.text-center YOUR CART
+  .row.container
+    table.table
+      thead.thead-info
+        tr
+          th product
+          th name
+          th quantity
+          th price
+          th delete
+      tbody
+        - @cart_items.each do |item|
+          - product = item[0]
+          tr
+            = hidden_field_tag :product_id, product.id
+            td = image_tag(product.img_url, size: "100")
+            td = link_to product.name, product_path(product.id)
+            td = form_tag(controller: 'carts', action: 'change_quantity')
+              = number_field_tag :quantity, item[1]['quantity'], min: 1, step: 1, style: "width: 100px"
+              = submit_tag 'Change', class: 'btn btn-info btn-sm'
+            td = number_to_currency (item[1]['item_price']), unit: '$'
+            td = link_to cart_delete_path(product.id), method: :delete, data: { confirm: 'Remove this product from cart?'} do
+              span.btn.btn-info Remove
+        tr
+          td
+          td
+          td
+          td = 'Total: ' + (number_to_currency (@total_price), unit: '$')

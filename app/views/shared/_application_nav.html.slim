@@ -17,11 +17,10 @@
               a.dropdown-toggle.nav-link data-toggle="dropdown" href='#' aria-expanded="true"
                 i.fa.fa-shopping-cart.fa-lg
               .dropdown-menu.dropdown-menu-right
-                - @cart.data.each do |key, val|
-                  = link_to "#{val['name']} x #{val['quantity']}", product_path(key.to_i), class: 'dropdown-item'
-                /   = link_to "#{item.name} x #{item.quantity}", product_path(item.product.id), class: 'dropdown-item'
+                / - @cart.each do |key, val|
+                /   = link_to "#{} x #{val}", product_path(key.to_i), class: 'dropdown-item'
                 .dropdown-divider
-                = link_to 'cart_path', class:'dropdown-item' do
+                = link_to cart_path, class:'dropdown-item' do
                   i.fa.fa-check[aria-hidden="true"]  SHOW YOUR CART
             - if current_user
               li

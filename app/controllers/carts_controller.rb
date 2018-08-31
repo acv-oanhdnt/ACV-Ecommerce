@@ -1,24 +1,43 @@
 class CartsController < ApplicationController
-  def create
-    cart = current_cart
-    product = Product.find(params[:product_id].to_i)
+  include CartsHelper
 
-    product_data = {
-      id: product.id,
-      name: product.name,
-      img: product.img_url,
-      price: product.price
-    }
+  before_action :set_cart, except: [:empty]
 
-    if (cart.data.key? product.id.to_s)
-      product_data['quantity'] = cart.data[product.id.to_s]["quantity"].to_i + params[:quantity].to_i
-    else
-      product_data['quantity'] = 1
-    end
-
-    cart.data[product.id] = product_data
-
-    return redirect_to product_path(product.id) if cart.save
-    redirect_to product_path(product.id), notice: 'Error when adding item to cart.'
+  def index
+    @cart_items = get_cart_items
   end
+
+  def add
+    quantity = params[:quantity].try(:to_i) || 1
+    if !add_item?(params[:product_id], quantity)
+      flash[:warning] = 'Invalid quantity'
+    end
+    redirect_to products_path
+  end
+
+  def delete
+    session[:cart].delete(params[:product_id])
+    flash[:success] = 'Delete item Successfully'
+    redirect_to cart_index_path
+  end
+
+  def change_quantity
+    if params[:quantity].blank? || params[:quantity].to_i < 1
+      flash[:warning] = 'Quantity invalid'
+    else
+      session[:cart][params[:product_id]] = params[:quantity].to_i
+    end
+    redirect_to cart_index_path
+  end
+
+  def empty
+    empty_cart
+    flash[:success] = 'Your Cart is Empty'
+    redirect_to cart_index_path
+  end
+
+  private
+    def set_cart
+      session[:cart] ||= {}
+    end
 end
