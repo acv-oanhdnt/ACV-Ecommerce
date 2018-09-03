@@ -4,7 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  after_create :create_cart
   validates_presence_of :first_name, :last_name, :address, :phone
-
   has_one :cart, dependent: :destroy
+
+  def create_cart
+    Cart.create(user: self, data: '{}')
+  end
 end

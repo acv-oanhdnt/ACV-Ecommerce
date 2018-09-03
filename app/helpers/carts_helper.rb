@@ -32,8 +32,7 @@ module CartsHelper
   # When User Login and Logout
   def merge_data_from_db
     session[:cart] ||= {}
-    data = JSON.parse(current_user.cart.data)
-    session[:cart].merge!(data) { |key, oldval, newval| oldval + newval }
+    session[:cart].merge!(JSON.parse(current_user.cart.data)) { |_key, oldval, newval| oldval + newval } if current_user.cart.data.present?
     current_user.cart.data = JSON(session[:cart])
     current_user.cart.save!
   end
