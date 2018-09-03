@@ -47,7 +47,7 @@
           = f.password_field :current_password, autocomplete: "current-password", class: "form-control"
         .field.form-group
           = f.fields_for :user_addresses do |address_form|
-            = render 'addresses_fields', f: address_form
+            = render 'user_address_fields', f: address_form
           = link_to_add_association 'Add Addresses', f, :user_addresses
         .actions
           = f.submit "Update", class: "btn btn-info"
