@@ -26,5 +26,24 @@ module CartsHelper
 
   def empty_cart
     session[:cart] = {}
+    merge_cart_to_db
+  end
+
+  # When User Login and Logout
+  def merge_data_from_db
+    session[:cart] ||= {}
+    data = JSON.parse(current_user.cart.data)
+    session[:cart].merge!(data) { |key, oldval, newval| oldval + newval }
+    current_user.cart.data = JSON(session[:cart])
+    current_user.cart.save!
+  end
+
+  def merge_cart_to_db
+    if user_signed_in?
+      if session[:cart]
+        current_user.cart.data = JSON(session[:cart])
+      end
+      current_user.cart.save!
+    end
   end
 end

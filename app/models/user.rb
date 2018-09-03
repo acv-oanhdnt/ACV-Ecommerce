@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates_presence_of :first_name, :last_name, :address, :phone
+
+  has_one :cart, dependent: :destroy
 end
