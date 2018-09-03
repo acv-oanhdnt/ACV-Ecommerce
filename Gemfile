@@ -42,6 +42,7 @@ gem 'jquery-rails'
 
 gem 'kaminari'
 gem 'devise'
+gem 'cocoon'
 
 gem 'slim'
 group :development, :test do

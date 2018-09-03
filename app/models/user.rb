@@ -5,8 +5,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   after_create :create_cart
-  validates_presence_of :first_name, :last_name, :address, :phone
+  validates_presence_of :first_name, :last_name, :phone
   has_one :cart, dependent: :destroy
+  has_many :user_addresses
+
+  accepts_nested_attributes_for :user_addresses,
+                                allow_destroy: true,
+                                reject_if: lambda {|attrs| attrs['name'].blank?}
 
   def create_cart
     Cart.create(user: self, data: '{}')

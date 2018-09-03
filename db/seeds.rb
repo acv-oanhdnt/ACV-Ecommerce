@@ -15,3 +15,9 @@ ActiveRecord::Base.connection.execute("ALTER SEQUENCE categories_id_seq RESTART 
     )
   end
 end
+
+2.times do |user_address|
+  User.last.user_addresses.create!(
+     name: "Address #{user_address}"
+   )
+end
