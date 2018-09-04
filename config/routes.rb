@@ -13,5 +13,7 @@ Rails.application.routes.draw do
   delete 'cart/remove/:id' => 'carts#delete', :as => 'cart_delete'
   delete 'cart/empty' => 'carts#empty', :as => 'empty_cart'
 
+  resources 'orders'
+
   root to: 'products#index'
 end

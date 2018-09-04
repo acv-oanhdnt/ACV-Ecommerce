@@ -1,0 +1,31 @@
+#order
+  .row
+    .col-md-7.order-item
+      h4.text-center YOUR ORDERS
+      .row.container
+        table.table
+          thead.thead-info
+            tr
+              th product
+              th quantity
+              th price
+              th total
+          tbody
+            - @order_items.each do |item|
+              - product = item[0]
+              tr
+                td
+                  = image_tag(product.img_url, size: "100")
+                  = link_to product.name, product_path(product.id)
+                td
+                  = number_field_tag :quantity, item[1]['quantity'], min: 1, step: 1, style: "width: 30px"
+                td = number_to_currency (product.price), unit: '$'
+                td = number_to_currency (item[1]['item_price']), unit: '$'
+            tr
+              td
+              td
+              td
+              td = 'Total: $' + @total_price.to_s
+    .col-md-5.order-shipping
+      h4.text-center SHIPPING DETAILS
+        

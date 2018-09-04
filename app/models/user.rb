@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates_presence_of :first_name, :last_name, :phone
   has_one :cart, dependent: :destroy
   has_many :user_addresses
+  has_many :orders 
 
   accepts_nested_attributes_for :user_addresses,
                                 allow_destroy: true,
