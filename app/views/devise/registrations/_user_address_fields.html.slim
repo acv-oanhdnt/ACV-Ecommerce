@@ -1,6 +1,17 @@
 .form-group.nested-fields
   = f.label 'Address Name: '
-  = f.text_field :name, class: 'form-control'
+  br
+  = f.text_field :name, autofocus: true, class: 'form-control'
   = f.label :address
-  = f.text_field :address, class: 'form-control'
+  br
+  = f.text_field :address, autofocus: true, class: 'form-control'
+  = f.label :line2
+  br
+  = f.text_field :line2, autofocus: true, class: 'form-control'
+  = f.label :city
+  br
+  = f.text_field :city, autofocus: true, class: 'form-control'
+  = f.label :country_code
+  br
+  = f.select :country_code, collection: UserAddress.country_code.options
   = link_to_remove_association 'Remove This Address', f

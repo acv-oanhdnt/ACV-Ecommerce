@@ -44,6 +44,9 @@ gem 'kaminari'
 gem 'devise'
 gem 'cocoon'
 
+gem 'enumerize'
+gem 'countries'
+
 gem 'slim'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
