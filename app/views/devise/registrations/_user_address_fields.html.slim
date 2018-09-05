@@ -14,4 +14,6 @@
   = f.label :country_code
   br
   = f.select :country_code, collection: UserAddress.country_code.options
-  = link_to_remove_association 'Remove This Address', f
+  br
+  br
+  = link_to_remove_association 'Remove This Address', f, class: 'btn btn-danger btn-sm'
