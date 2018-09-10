@@ -46,6 +46,8 @@ gem 'cocoon'
 
 gem 'enumerize'
 gem 'countries'
+gem 'paypal-sdk-rest'
+gem 'dotenv'
 
 gem 'slim'
 group :development, :test do

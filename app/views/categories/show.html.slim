@@ -1,0 +1,23 @@
+h2.text-center Products in category #{@category.name}
+.products
+  .container
+    .row
+      - @category.products.each do |product|
+        .col-sm-6.col-md-4.col-lg-4.mt-4
+          .card
+            = link_to product_path(product.id) do
+              .img-box
+                img.card-img-top src="#{product.img_url}" /
+            .card-block
+              .details
+                = link_to product_path(product.id) do
+                  h5.card-title= product.name
+                p= simple_format product.description.truncate(80)
+              p.price= number_to_currency (product.price), unit: '$', precision: 2
+              p
+              = form_tag cart_add_path(product), method: :post,  id:'product-info' do
+                = hidden_field_tag 'product_id', product.id
+                fieldset.form-group.col-md-4
+                = button_tag class: 'btn btn-addcart' do
+                  i.fa.fa-cart-plus.fa-lg
+                  | Add to Cart

@@ -1,0 +1,14 @@
+.categories
+  h2.text-center Categories
+  .row
+    .container align="center"
+      table
+        thead
+          tr
+            th
+        tbody
+          - @categories.each do |category|
+            tr
+              td
+                = link_to category, class: 'btn btn-info' do
+                  = category.name

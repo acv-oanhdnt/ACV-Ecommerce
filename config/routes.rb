@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     sign_up: 'register'
   }
 
+  resources 'categories', only: [:index, :show]
   resources 'products', only: [:index, :show]
 
   get 'cart' => 'carts#index', :as => 'cart_index'
@@ -13,7 +14,15 @@ Rails.application.routes.draw do
   delete 'cart/remove/:id' => 'carts#delete', :as => 'cart_delete'
   delete 'cart/empty' => 'carts#empty', :as => 'empty_cart'
 
-  resources 'orders'
+  resources :orders, only: [:new] do
+    collection do
+      post 'checkout'
+      get 'execute_payment'
+    end
+  end
+  # get "order/fetch_address" => 'orders#get_address', as: 'fetch_address'
+  get 'order/address/:address_name' => 'orders#get_address'
+
 
   root to: 'products#index'
 end

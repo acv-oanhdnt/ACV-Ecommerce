@@ -43,7 +43,7 @@
               = f.label :password_confirmation
               br
               = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
-          .col-md-6
+          .col-md-6#user-address
             .field.form-group
               = f.fields_for :user_addresses do |address_form|
                 = render 'user_address_fields', f: address_form

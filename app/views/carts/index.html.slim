@@ -33,5 +33,5 @@
           td = 'Total: $' + @total_price.to_s
   .text-center
     = link_to 'Back', products_path, class: 'btn btn-primary'
-    = link_to 'Check out', products_path, class: 'btn btn-success'
+    = link_to 'Order Now', new_order_path, class: 'btn btn-success'
     = link_to 'Remove all', empty_cart_path, method: :delete, class: 'btn btn-danger'
