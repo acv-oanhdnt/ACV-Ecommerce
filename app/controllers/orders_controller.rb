@@ -23,11 +23,14 @@ class OrdersController < ApplicationController
                                             data: JSON(convert_cart_items_to_order_items(item_list)),
                                             total_amount: @total_price,
                                             payment_id: @payment.id))
-      if @order.save
-        redirect_to @payment.links[1].href
-      else
-        flash[:error] = @order.errors.full_messages
-        render :new
+      Order.transaction do
+        if @order.save
+          redirect_to @payment.links[1].href
+        else
+          raise ActiveRecord::Rollback
+          flash[:error] = @order.errors.full_messages
+          render :new
+        end
       end
     else
       flash[:error] = @payment.error
@@ -39,17 +42,13 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:order_id])
     @order_items = @order.get_order_items
     @mail_status = true
-    begin
-      OrderMailer.finished_order_email(@order).deliver_now
-    rescue StandardError
-      @mail_status = false
-    end
+    OrderMailer.finished_order_email(@order).deliver_now rescue @mail_status = false
   end
 
   def execute_payment
     if @payment.execute(payer_id: params[:PayerID])
-      flash.now[:success] = 'Execute payment successfully'
       @order.pay!
+      flash.now[:success] = 'Execute payment successfully'
       @items = @order.get_order_items
       empty_cart
       render 'show'

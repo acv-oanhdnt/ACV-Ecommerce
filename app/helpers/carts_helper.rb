@@ -32,7 +32,11 @@ module CartsHelper
   # When User Login and Logout
   def merge_data_from_db
     session[:cart] ||= {}
+    begin
     session[:cart].merge!(JSON.parse(current_user.cart.data)) { |_key, oldval, newval| oldval + newval } if current_user.cart.data.present?
+    rescue StandardError
+      flash[:notice] = "Something went wrong!"
+    end
     current_user.cart.data = JSON(session[:cart])
     current_user.cart.save!
   end

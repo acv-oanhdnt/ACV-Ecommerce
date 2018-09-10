@@ -3,7 +3,6 @@ class OrderMailer < ApplicationMailer
 
   def finished_order_email(order)
     @order = order
-
-    mail(to:@order.email, subject: 'Finished Order at ACV-Ecommerce')
+    mail(to: @order.email, subject: 'Finished Order at ACV-Ecommerce')
   end
 end

@@ -7,8 +7,4 @@
           tr
             th
         tbody
-          - @categories.each do |category|
-            tr
-              td
-                = link_to category, class: 'btn btn-info' do
-                  = category.name
+          = render partial: 'category', collection: @categories

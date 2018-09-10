@@ -17,7 +17,6 @@ class CartsController < ApplicationController
   end
 
   def delete
-    # binding.pry
     session[:cart].delete(params[:id].to_s)
     flash[:success] = 'Delete item Successfully'
     redirect_to cart_index_path
