@@ -26,6 +26,8 @@
             - if devise_mapping.confirmable? && resource.pending_reconfirmation?
               div
                 | Currently waiting confirmation for: #{resource.unconfirmed_email}
+
+          .col-md-6#user-address
             .field.form-group
               = f.label :password
               br
@@ -39,11 +41,9 @@
               = f.label :password_confirmation
               br
               = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
-          .col-md-6#user-address
-            .field.form-group
-              = f.fields_for :user_addresses do |address_form|
-                = render 'user_address_fields', f: address_form
-              = link_to_add_association 'Add Addresses', f, :user_addresses
+            .form-group
+              = f.label 'Address: '
+              = f.text_field :address, autofocus: true, class: 'form-control'
             .field.form-group
               = f.label 'Type your current password to confirm your edit!'
               br

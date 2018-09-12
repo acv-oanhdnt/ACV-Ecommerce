@@ -1,8 +1,11 @@
 test: &default
 
   # Credentials for REST APIs
-  client_id: AawGdEv4k3mCdqaqT7h6Ea5NZN80coGQ862nUYJRDOdgbB4jqdLweeHLNudBM0ZgzCJp6kkxbICNdJ2H
-  client_secret: EAHcyVR7fG_5ioYa1h2KmMNxlne16sM-nIqiGDSOjFKjoDFFKCql3K-cr3k5gkzobeh7ou78E5s20b1y
+  # client_id: ENV['PAYPAL_CLIENT_ID']
+  # client_secret: ENV['PAYPAL_CLIENT_ID']
+
+  client_id: AXpFconK6ymfJW8OfncGsYUb8y2YFetgjP7mLTxkVJDZfKEEnOqKYUacxrhD1d770n6K1rAmxRkMx490
+  client_secret: EDAOmd_Bal-e69eFDbNMGPfaoAOKr8nkIkqKeSefPUFxPXR13i-v6s3Aien3A7myOrY34NUCDQYKf7Zb
 
   # Mode can be 'live' or 'sandbox'
   mode: sandbox

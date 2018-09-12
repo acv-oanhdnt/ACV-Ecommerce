@@ -47,7 +47,7 @@ gem 'cocoon'
 gem 'enumerize'
 gem 'countries'
 gem 'paypal-sdk-rest'
-gem 'dotenv'
+gem 'dotenv-rails'
 
 gem 'slim'
 group :development, :test do
@@ -64,6 +64,9 @@ group :development, :test do
 
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
 end
 
 group :development do

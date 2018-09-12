@@ -20,9 +20,6 @@ Rails.application.routes.draw do
       get 'execute_payment'
     end
   end
-  # get "order/fetch_address" => 'orders#get_address', as: 'fetch_address'
-  get 'order/address/:address_name' => 'orders#get_address'
-
 
   root to: 'products#index'
 end

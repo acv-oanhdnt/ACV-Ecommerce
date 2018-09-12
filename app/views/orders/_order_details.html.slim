@@ -11,17 +11,6 @@ h4.text-center SHIPPING DETAILS
     = f.text_field :email, class: 'form-control'
   .form-group
     = f.label 'Shipping To: '
-    .form-check.form-check-inline
-      = f.radio_button :address_name, ' Home', class: 'form-check-input address-name'
-      = f.label 'Home', class: 'form-check-label'
-    .form-check.form-check-inline
-      = f.radio_button :address_name, 'Company', class: 'form-check-input address-name'
-      = f.label 'Comany', class: 'form-check-label'
-    .form-check.form-check-inline
-      = f.radio_button :address_name, 'Shipping Address', class: 'form-check-input address-name'
-      = f.label 'Shipping Address', class: 'form-check-label'
-  .form-group
-    = f.label 'Address: '
     = f.text_field :shipping_address, class: 'form-control'
   .form-group
     = f.label 'Note: '

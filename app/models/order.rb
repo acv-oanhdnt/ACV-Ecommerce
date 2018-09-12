@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :user
+  validates :name, :phone_number, :shipping_address, :email, :payment_id, presence: true
   after_initialize :shipping_details
 
   def shipping_details
@@ -7,7 +8,7 @@ class Order < ApplicationRecord
     self.name = name || user.first_name + ' ' + user.last_name
     self.phone_number = phone_number || user.phone
     self.email = email || user.email
-    self.shipping_address = shipping_address
+    self.shipping_address = shipping_address || user.address
     self.note = note
   end
 
