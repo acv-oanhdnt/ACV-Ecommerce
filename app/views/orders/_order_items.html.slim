@@ -1,0 +1,8 @@
+- product = item[0]
+tr
+  td
+    = image_tag(product.img_url, size: "50")
+    = link_to product.name, product_path(product.id)
+  td = item[1]['quantity'].to_s
+  td = number_to_currency (product.price), unit: '$'
+  td = number_to_currency (item[1]['item_price']), unit: '$'

@@ -1,0 +1,21 @@
+#order
+  .row
+    .col-md-7.order-item
+      h4.text-center YOUR ORDERS
+      .row.container
+        table.table
+          thead.thead-info
+            tr
+              th product
+              th quantity
+              th price
+              th total
+          tbody
+            = render partial: 'order_items', collection: @order_items, as: :item
+            tr
+              td
+              td
+              td
+              td = 'Total: $' + @total_price.to_s
+    .col-md-5.order-shipping
+      = render partial: 'order_details'

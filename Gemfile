@@ -42,6 +42,12 @@ gem 'jquery-rails'
 
 gem 'kaminari'
 gem 'devise'
+gem 'cocoon'
+
+gem 'enumerize'
+gem 'countries'
+gem 'paypal-sdk-rest'
+gem 'dotenv-rails'
 
 gem 'slim'
 group :development, :test do
@@ -58,6 +64,9 @@ group :development, :test do
 
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
 end
 
 group :development do

@@ -2,6 +2,7 @@ class CartsController < ApplicationController
   include CartsHelper
 
   before_action :set_cart, except: [:empty]
+  after_action :merge_cart_to_db, except: [:index, :empty]
 
   def index
     @cart_items = get_cart_items
@@ -16,7 +17,7 @@ class CartsController < ApplicationController
   end
 
   def delete
-    session[:cart].delete(params[:product_id])
+    session[:cart].delete(params[:id].to_s)
     flash[:success] = 'Delete item Successfully'
     redirect_to cart_index_path
   end

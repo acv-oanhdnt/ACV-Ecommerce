@@ -1,0 +1,6 @@
+h2.text-center Products in category #{@category.name}
+.products
+  .container
+    .row
+      - @category.products.each do |product|
+        = render 'category_products', product: product
